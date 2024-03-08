@@ -6,8 +6,8 @@ basedir=/home/riccardo/xrism/A1689
 SrcRA=197.87233
 SrcDec=-1.341345
 
-SrcRA_off=197.9031984
-SrcDec_off=-1.3928054
+SrcRA_off=197.92
+SrcDec_off=-1.29
 
 #resolve center
 xifupipeline \

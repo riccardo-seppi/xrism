@@ -7,10 +7,10 @@ $SIMPUT/bin/simputfile       \
     Src_Name=A1689       \
     RA=197.867750 Dec=-1.313722 \
     Emin=0.5 Emax=2.0          \
-    srcFlux=9.322793005013373e-12    \
+    srcFlux=9.92495883e-12    \
     Nbins=19900            \
     logEgrid=n            \
-    Elow=0.1 Eup=15          \
+    Elow=0.1 Eup=30          \
     XSPECFile=${basedir}/sixte_files/1comp/A16891comp.xcm   \
     ImageFile=${basedir}/data/csm_sb_cropR500.fits \
     clobber=yes
