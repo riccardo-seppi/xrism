@@ -51,8 +51,8 @@ spectral_fitting.fit_Tbabs_bapec(p2spec, p2out, Emin=2.0, Emax=10, nH=0.0167, kT
 
 
 # Now do 1 component, second pointing off-center with resolve, xtend
-RA_pnt = 197.91
-DEC_pnt = -1.37
+RA_pnt = 197.92
+DEC_pnt = -1.29
 texp = 2e5 #200ks
 #Generate events
 p2evt_resolve = os.path.join(basedir, 'sixte_files/1comp/A1689_evts_resolve_off.fits')
