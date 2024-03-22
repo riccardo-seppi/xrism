@@ -48,7 +48,7 @@ MySource = XRISMmock.XRISM_source(name = 'NAME', RA_src=180, DEC_src=-10,
     )
 ```
 Now create the simput and generate mock events with resolve and xtend.
-You can specify the pointing and the exposure time.
+You can specify the pointing and the exposure time. Make sure you change RA_pnt and DEC_pnt in the following code:
 ```commandline
 MySource.create_simput()
 RA_pnt = 180.1
@@ -58,7 +58,7 @@ p2evt_resolve = path_to_events_resolve.fits
 MySource.runSIXTE_resolve(p2evt_resolve, RA_pnt, DEC_pnt, texp)
 
 p2evt_xtend = path_to_events_xtend.fits
-MySource.runSIXTE_resolve(p2evt_xtend, RA_pnt, DEC_pnt, texp)
+MySource.runSIXTE_xtend(p2evt_xtend, RA_pnt, DEC_pnt, texp)
 ```
 
 Now you can create images. You can change the center of the images by specifying new RA_pnt, DEC_pnt, if needed.
