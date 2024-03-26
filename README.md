@@ -84,3 +84,6 @@ You need to provide the path to a file storing the output of the XSPEC fit.
 p2out = path_to_summaryfile.txt
 spectral_fitting.fit_Tbabs_bapec(p2spec, p2out, Emin=2.0, Emax=10, nH=0.0167, kT=8.8, z=0.184, vel=180)
 ```
+
+# Attitude files #
+If you need specific information about the pointing of the telescope you can create and use attitude files

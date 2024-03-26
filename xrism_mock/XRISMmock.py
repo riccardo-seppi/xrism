@@ -5,7 +5,8 @@ import sys
 class XRISM_source():
     def __init__(self, name, RA_src, DEC_src,
                 XSPECFile, IMGFile, Flux, p2simput,
-                Emin_flux=0.5, Emax_flux=2.0, Emin_spec=0.1, Emax_spec=30):
+                Emin_flux=0.5, Emax_flux=2.0, Emin_spec=0.1, Emax_spec=30,
+                 attitude=None):
         self.name = name
         self.RA_src = RA_src
         self.DEC_src = DEC_src
@@ -19,6 +20,7 @@ class XRISM_source():
         self.Emin_spec = Emin_spec
         self.Emax_spec = Emax_spec
         self.p2simput = p2simput
+        self.attitude = attitude
 
         if os.path.isfile(self.XSPECFile):
             print('Using', self.XSPECFile)
@@ -31,6 +33,13 @@ class XRISM_source():
         else:
             print(self.IMGFile, 'does not exist!')
             sys.exit()
+
+        if self.attitude is not None:
+            if os.path.isfile(self.attitude):
+                print('Using', self.attitude)
+            else:
+                print('Tried using', self.attitude,', but it does not exist!')
+                sys.exit()
 
 
     def create_simput(self):
@@ -86,6 +95,35 @@ class XRISM_source():
         else:
             print(p2evt, 'already exists!')
 
+    def runSIXTE_resolve_attitude(self, p2evt, RA_pnt, DEC_pnt, texp, mjdref, xmldir='$SIXTE/share/sixte/instruments/xrism'):
+        if not os.path.isfile(p2evt):
+            cmd_list = ['xifupipeline',
+                'XMLFile=%s/resolve/resolve_baseline_GVclosed.xml'%xmldir,
+                'AdvXml=%s/resolve/resolve_detector.xml'%xmldir,
+                'Simput=%s'%self.p2simput,
+                'EvtFile=%s'%p2evt,
+                "Attitude=%s"%self.attitude,
+                'MJDREF=%s'%repr(mjdref),
+                'Exposure=%d'%texp
+                ]
+
+            cmd = ' '.join(cmd_list)
+            print(cmd)
+            os.system(cmd)
+
+            # radec2xy adds WCS coordinates to an event file
+            cmd_list = ['radec2xy',
+                        'EvtFile=%s' % p2evt,
+                        'RefRA=%.8f RefDec=%.8f' % (RA_pnt, DEC_pnt),
+                        'Projection = TAN'
+                        ]
+            cmd = ' '.join(cmd_list)
+            print(cmd)
+            os.system(cmd)
+
+
+        else:
+            print(p2evt, 'already exists!')
 
     def runSIXTE_xtend(self, p2evt, RA_pnt, DEC_pnt, texp, xmldir='$SIXTE/share/sixte/instruments/xrism'):
 
