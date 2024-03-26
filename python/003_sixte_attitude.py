@@ -33,8 +33,18 @@ A1689 = XRISMmock.XRISM_source(name = 'A1689', RA_src=197.867750, DEC_src=-1.313
 RA_pnt = 197.87233
 DEC_pnt = -1.341345
 texp = 2e5 #200ks
+
+#resolve
 p2evt_resolve = os.path.join(basedir, 'sixte_files/1comp/A1689_evts_resolve_attitude.fits')
 A1689.runSIXTE_resolve_attitude(p2evt_resolve, RA_pnt, DEC_pnt, texp, mjdref=mjdref)
+#Make image
+p2img = os.path.join(basedir,'sixte_files/1comp/A1689_IMG_resolve_attitude.fits')
+A1689.createIMAGE_resolve(p2evt_resolve, p2img, RA_pnt, DEC_pnt, size=2)
 
+#Xtend
 p2evt_xtend = os.path.join(basedir, 'sixte_files/1comp/A1689_evts_xtend_attitude.fits')
 A1689.runSIXTE_xtend_attitude(p2evt_xtend, RA_pnt, DEC_pnt, texp, mjdref=mjdref)
+p2img = os.path.join(basedir,'sixte_files/1comp/A1689_IMG_xtend_attitude.fits')
+A1689.createIMAGE_xtend(p2evt_xtend, p2img, RA_pnt, DEC_pnt, size=2)
+p2img = os.path.join(basedir,'sixte_files/1comp/A1689_IMG_xtend_attitude1.fits')
+A1689.createIMAGE_xtend(p2evt_xtend, p2img, RA_pnt, DEC_pnt, size=1)

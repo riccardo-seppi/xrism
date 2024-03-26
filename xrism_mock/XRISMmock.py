@@ -185,16 +185,18 @@ class XRISM_source():
             print(p2evt, 'already exists!\n')
 
 
-    def createIMAGE_resolve(self, p2evt, p2img, RA_pnt, DEC_pnt):
+    def createIMAGE_resolve(self, p2evt, p2img, RA_pnt, DEC_pnt, size=1):
         if not os.path.isfile(p2img):
+            naxis = 6 * size
+            crpix = 3.5 * size
             cmd_list = ['$SIXTE/bin/imgev',
                 'EvtFile=%s'%p2evt,
                 'Image=%s'%p2img,
                 'CoordinateSystem=0 Projection=TAN',
-                'NAXIS1=6 NAXIS2=6',
+                'NAXIS1=%d NAXIS2=%d'%(naxis, naxis),
                 'CUNIT1=deg CUNIT2=deg',
                 'CRVAL1=%.8f CRVAL2=%.8f'%(RA_pnt, DEC_pnt),
-                'CRPIX1=3.5 CRPIX2=3.5',
+                'CRPIX1=%s CRPIX2=%s'%(crpix, crpix),
                 'CDELT1=-85.12516e-04 CDELT2=85.12516e-04',
                 'history=true clobber=yes'
             ]
@@ -205,16 +207,18 @@ class XRISM_source():
         else:
             print(p2img, 'already exists!')
 
-    def createIMAGE_xtend(self, p2evt, p2img, RA_pnt, DEC_pnt):
+    def createIMAGE_xtend(self, p2evt, p2img, RA_pnt, DEC_pnt, size=1):
         if not os.path.isfile(p2img):
+            naxis = 640 * size
+            crpix = 473.34 * size
             cmd_list = ['$SIXTE/bin/imgev',
                 'EvtFile=%s'%p2evt,
                 'Image=%s'%p2img,
                 'CoordinateSystem=0 Projection=TAN',
-                'NAXIS1=640 NAXIS2=640',
+                'NAXIS1=%d NAXIS2=%d'%(naxis, naxis),
                 'CUNIT1=deg CUNIT2=deg',
                 'CRVAL1=%.8f CRVAL2=%.8f'%(RA_pnt, DEC_pnt),
-                'CRPIX1=473.34 CRPIX2=473.34',
+                'CRPIX1=%s CRPIX2=%s'%(crpix, crpix),
                 'CDELT1=-4.9110668e-04 CDELT2=4.9110668e-04',
                 'history=true clobber=yes'
             ]
