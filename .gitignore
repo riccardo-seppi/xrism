@@ -3,3 +3,9 @@ notebooks/tutorial_hitomi.ipynb
 A1689/data
 A1689/sixte_files
 .idea
+docs/_static
+docs/_templates
+docs/make.bat
+docs/Makefile
+docs/_build/doctrees
+docs/_build/html/_static

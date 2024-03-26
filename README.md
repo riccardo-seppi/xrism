@@ -87,3 +87,36 @@ spectral_fitting.fit_Tbabs_bapec(p2spec, p2out, Emin=2.0, Emax=10, nH=0.0167, kT
 
 # Attitude files #
 If you need specific information about the pointing of the telescope you can create and use attitude files
+```commandline
+from xrism_mock import helper
+time = np.array([0., 2e5])
+ra = np.array([180, 180])
+dec = np.array([-10, -10])
+roll = np.array([150., 150.])
+tstart = 0
+tstop = 2e5
+mjdref = 60395.38870714722
+helper.create_attitude(p2att=p2att, time=time, ra=ra, dec=dec, roll=roll,
+                       tstart=tstart, tstop=tstop, mjdref=mjdref)
+```
+Then you can pass the attitude file to the XRISMmock instance:
+```commandline
+MySource = XRISMmock.XRISM_source(name = 'NAME', RA_src=180, DEC_src=-10,
+    XSPECFile=XSPECFile, IMGFile=IMGFile, Flux=Flux, p2simput=p2simput,
+    Emin_flux=0.5, Emax_flux=2.0, Emin_spec=0.1, Emax_spec=30, 
+    attitude = p2att
+    )    
+MySource.runSIXTE_resolve_attitude(p2evt_resolve, RA_pnt, DEC_pnt, texp, mjdref=mjdref)
+```
+
+### Docs ###
+A tentative documentation has been generated with sphinx (https://www.sphinx-doc.org/en/master/):
+```commandline
+sphinx-quickstart docs
+```
+After editing the conf.py file in docs/source:
+```
+sphinx-apidoc -o docs xrism_mock/
+cd docs
+make html
+```

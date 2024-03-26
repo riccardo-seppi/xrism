@@ -7,6 +7,22 @@ class XRISM_source():
                 XSPECFile, IMGFile, Flux, p2simput,
                 Emin_flux=0.5, Emax_flux=2.0, Emin_spec=0.1, Emax_spec=30,
                  attitude=None):
+        """
+        This class manages the source you want to simulate
+        :param name: name of the source
+        :param RA_src: right ascension of the reference pixel in the image
+        :param DEC_src: declination of the reference pixel in the image
+        :param XSPECFile: path to the XSPEC file with spectral information
+        :param IMGFile: path to the image file
+        :param Flux: flux in observer frame [erg/s/cm2]
+        :param p2simput: path to the simput file
+        :param Emin_flux: lower flux threshold
+        :param Emax_flux: higher flux threshold
+        :param Emin_spec: lower energy for the spectrum
+        :param Emax_spec: higher energy for the spectrum
+        :param attitude: path to the attitude file
+        """
+
         self.name = name
         self.RA_src = RA_src
         self.DEC_src = DEC_src
@@ -43,6 +59,10 @@ class XRISM_source():
 
 
     def create_simput(self):
+        """
+        Creates the simput file
+        :return: None
+        """
 
         if not os.path.isfile(self.p2simput):
             print('Creating', self.p2simput)
@@ -67,6 +87,15 @@ class XRISM_source():
             return
 
     def runSIXTE_resolve(self, p2evt, RA_pnt, DEC_pnt, texp, xmldir='$SIXTE/share/sixte/instruments/xrism'):
+        """
+        run the simulation using resolve
+        :param p2evt: path to the output event file
+        :param RA_pnt: right ascension of the pointing
+        :param DEC_pnt: declination of the pointing
+        :param texp: exposure time
+        :param xmldir: directory containing response files. Default is $SIXTE/share/sixte/instruments/xrism
+        :return:
+        """
         if not os.path.isfile(p2evt):
             cmd_list = ['xifupipeline',
                 'XMLFile=%s/resolve/resolve_baseline_GVclosed.xml'%xmldir,
@@ -96,13 +125,23 @@ class XRISM_source():
             print(p2evt, 'already exists!')
 
     def runSIXTE_resolve_attitude(self, p2evt, RA_pnt, DEC_pnt, texp, mjdref, xmldir='$SIXTE/share/sixte/instruments/xrism'):
+        """
+        run the simulation using resolve and an attitude file
+        :param p2evt: path to the output event file
+        :param RA_pnt: right ascension of the pointing
+        :param DEC_pnt: declination of the pointing
+        :param texp: exposure time
+        :param mjdref: reference modified julian date, it should be the same as specified in the attitude file
+        :param xmldir: directory containing response files. Default is $SIXTE/share/sixte/instruments/xrism
+        :return:
+        """
         if not os.path.isfile(p2evt):
             cmd_list = ['xifupipeline',
                 'XMLFile=%s/resolve/resolve_baseline_GVclosed.xml'%xmldir,
                 'AdvXml=%s/resolve/resolve_detector.xml'%xmldir,
                 'Simput=%s'%self.p2simput,
                 'EvtFile=%s'%p2evt,
-                "Attitude=%s"%self.attitude,
+                'Attitude=%s'%self.attitude,
                 'MJDREF=%s'%repr(mjdref),
                 'Exposure=%d'%texp
                 ]
@@ -126,7 +165,15 @@ class XRISM_source():
             print(p2evt, 'already exists!')
 
     def runSIXTE_xtend(self, p2evt, RA_pnt, DEC_pnt, texp, xmldir='$SIXTE/share/sixte/instruments/xrism'):
-
+        """
+        run the simulation using xtend
+        :param p2evt: path to the output event file
+        :param RA_pnt: right ascension of the pointing
+        :param DEC_pnt: declination of the pointing
+        :param texp: exposure time
+        :param xmldir: directory containing response files. Default is $SIXTE/share/sixte/instruments/xrism
+        :return:
+        """
         if not os.path.isfile(p2evt):
 
             cmd_list = ['runsixt',
@@ -155,12 +202,22 @@ class XRISM_source():
 
 
     def runSIXTE_xtend_attitude(self, p2evt, RA_pnt, DEC_pnt, texp, mjdref, xmldir='$SIXTE/share/sixte/instruments/xrism'):
+        """
+        run the simulation using xtend and an attitude file
+        :param p2evt: path to the output event file
+        :param RA_pnt: right ascension of the pointing
+        :param DEC_pnt: declination of the pointing
+        :param texp: exposure time
+        :param mjdref: reference modified julian date, it should be the same as specified in the attitude file
+        :param xmldir: directory containing response files. Default is $SIXTE/share/sixte/instruments/xrism
+        :return:
+        """
         if not os.path.isfile(p2evt):
             cmd_list = ['runsixt',
                         'XMLFile=%s/xtend/xtend_ccd2.xml' % xmldir,
                         'Simput=%s' % self.p2simput,
                         'EvtFile=%s' % p2evt,
-                        "Attitude=%s"%self.attitude,
+                        'Attitude=%s'%self.attitude,
                         'MJDREF=%s'%repr(mjdref),
                         'Exposure=%d' % texp
                         ]
@@ -186,6 +243,15 @@ class XRISM_source():
 
 
     def createIMAGE_resolve(self, p2evt, p2img, RA_pnt, DEC_pnt, size=1):
+        """
+        create images from resolve
+        :param p2evt: path to event file
+        :param p2img: path to the output image
+        :param RA_pnt: right ascension of the center of the image
+        :param DEC_pnt: declination of the center of the image
+        :param size: rescale factor to modify the standard resolve image. Default is 1.
+        :return:
+        """
         if not os.path.isfile(p2img):
             naxis = 6 * size
             crpix = 3.5 * size
@@ -208,6 +274,15 @@ class XRISM_source():
             print(p2img, 'already exists!')
 
     def createIMAGE_xtend(self, p2evt, p2img, RA_pnt, DEC_pnt, size=1):
+        """
+        create images from xtend
+        :param p2evt: path to event file
+        :param p2img: path to the output image
+        :param RA_pnt: right ascension of the center of the image
+        :param DEC_pnt: declination of the center of the image
+        :param size: rescale factor to modify the standard xtend image. Default is 1.
+        :return:
+        """
         if not os.path.isfile(p2img):
             naxis = 640 * size
             crpix = 473.34 * size
@@ -230,6 +305,13 @@ class XRISM_source():
             print(p2img, 'already exists!')
 
     def extractSPECTRUM_resolve(self, p2evt, p2spec, xmldir='$SIXTE/share/sixte/instruments/xrism'):
+        """
+        extract spectrum from resolve simulations
+        :param p2evt: path to the event file
+        :param p2spec: path to the output spectrum
+        :param xmldir: directory containing response files. Default is $SIXTE/share/sixte/instruments/xrism
+        :return:
+        """
         if not os.path.isfile(p2spec):
             cmd_list = ['$SIXTE/bin/makespec',
               'EvtFile=%s'%p2evt,

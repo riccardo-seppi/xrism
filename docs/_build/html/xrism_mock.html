@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>xrism_mock package &mdash; xrism_mock 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="xrism_mock" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            xrism_mock
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">xrism_mock</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">xrism_mock package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-xrism_mock.XRISMmock">xrism_mock.XRISMmock module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-xrism_mock.helper">xrism_mock.helper module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-xrism_mock.spectral_fitting">xrism_mock.spectral_fitting module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-xrism_mock">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">xrism_mock</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">xrism_mock</a></li>
+      <li class="breadcrumb-item active">xrism_mock package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/xrism_mock.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="xrism-mock-package">
+<h1>xrism_mock package<a class="headerlink" href="#xrism-mock-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-xrism_mock.XRISMmock">
+<span id="xrism-mock-xrismmock-module"></span><h2>xrism_mock.XRISMmock module<a class="headerlink" href="#module-xrism_mock.XRISMmock" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="xrism_mock.XRISMmock.XRISM_source">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">xrism_mock.XRISMmock.</span></span><span class="sig-name descname"><span class="pre">XRISM_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RA_src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DEC_src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">XSPECFile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">IMGFile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Flux</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2simput</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Emin_flux</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Emax_flux</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Emin_spec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Emax_spec</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xrism_mock/XRISMmock.html#XRISM_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xrism_mock.XRISMmock.XRISM_source" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="xrism_mock.XRISMmock.XRISM_source.createIMAGE_resolve">
+<span class="sig-name descname"><span class="pre">createIMAGE_resolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p2evt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RA_pnt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DEC_pnt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xrism_mock/XRISMmock.html#XRISM_source.createIMAGE_resolve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xrism_mock.XRISMmock.XRISM_source.createIMAGE_resolve" title="Permalink to this definition"></a></dt>
+<dd><p>create images from resolve
+:param p2evt: path to event file
+:param p2img: path to the output image
+:param RA_pnt: right ascension of the center of the image
+:param DEC_pnt: declination of the center of the image
+:param size: rescale factor to modify the standard resolve image. Default is 1.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xrism_mock.XRISMmock.XRISM_source.createIMAGE_xtend">
+<span class="sig-name descname"><span class="pre">createIMAGE_xtend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p2evt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RA_pnt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DEC_pnt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xrism_mock/XRISMmock.html#XRISM_source.createIMAGE_xtend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xrism_mock.XRISMmock.XRISM_source.createIMAGE_xtend" title="Permalink to this definition"></a></dt>
+<dd><p>create images from xtend
+:param p2evt: path to event file
+:param p2img: path to the output image
+:param RA_pnt: right ascension of the center of the image
+:param DEC_pnt: declination of the center of the image
+:param size: rescale factor to modify the standard xtend image. Default is 1.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xrism_mock.XRISMmock.XRISM_source.create_simput">
+<span class="sig-name descname"><span class="pre">create_simput</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/xrism_mock/XRISMmock.html#XRISM_source.create_simput"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xrism_mock.XRISMmock.XRISM_source.create_simput" title="Permalink to this definition"></a></dt>
+<dd><p>Creates the simput file
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xrism_mock.XRISMmock.XRISM_source.extractSPECTRUM_resolve">
+<span class="sig-name descname"><span class="pre">extractSPECTRUM_resolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p2evt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2spec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmldir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'$SIXTE/share/sixte/instruments/xrism'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xrism_mock/XRISMmock.html#XRISM_source.extractSPECTRUM_resolve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xrism_mock.XRISMmock.XRISM_source.extractSPECTRUM_resolve" title="Permalink to this definition"></a></dt>
+<dd><p>extract spectrum from resolve simulations
+:param p2evt: path to the event file
+:param p2spec: path to the output spectrum
+:param xmldir: directory containing response files. Default is $SIXTE/share/sixte/instruments/xrism
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xrism_mock.XRISMmock.XRISM_source.runSIXTE_resolve">
+<span class="sig-name descname"><span class="pre">runSIXTE_resolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p2evt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RA_pnt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DEC_pnt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmldir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'$SIXTE/share/sixte/instruments/xrism'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xrism_mock/XRISMmock.html#XRISM_source.runSIXTE_resolve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xrism_mock.XRISMmock.XRISM_source.runSIXTE_resolve" title="Permalink to this definition"></a></dt>
+<dd><p>run the simulation using resolve
+:param p2evt: path to the output event file
+:param RA_pnt: right ascension of the pointing
+:param DEC_pnt: declination of the pointing
+:param texp: exposure time
+:param xmldir: directory containing response files. Default is $SIXTE/share/sixte/instruments/xrism
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xrism_mock.XRISMmock.XRISM_source.runSIXTE_resolve_attitude">
+<span class="sig-name descname"><span class="pre">runSIXTE_resolve_attitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p2evt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RA_pnt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DEC_pnt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mjdref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmldir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'$SIXTE/share/sixte/instruments/xrism'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xrism_mock/XRISMmock.html#XRISM_source.runSIXTE_resolve_attitude"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xrism_mock.XRISMmock.XRISM_source.runSIXTE_resolve_attitude" title="Permalink to this definition"></a></dt>
+<dd><p>run the simulation using resolve and an attitude file
+:param p2evt: path to the output event file
+:param RA_pnt: right ascension of the pointing
+:param DEC_pnt: declination of the pointing
+:param texp: exposure time
+:param mjdref: reference modified julian date, it should be the same as specified in the attitude file
+:param xmldir: directory containing response files. Default is $SIXTE/share/sixte/instruments/xrism
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xrism_mock.XRISMmock.XRISM_source.runSIXTE_xtend">
+<span class="sig-name descname"><span class="pre">runSIXTE_xtend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p2evt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RA_pnt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DEC_pnt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmldir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'$SIXTE/share/sixte/instruments/xrism'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xrism_mock/XRISMmock.html#XRISM_source.runSIXTE_xtend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xrism_mock.XRISMmock.XRISM_source.runSIXTE_xtend" title="Permalink to this definition"></a></dt>
+<dd><p>run the simulation using xtend
+:param p2evt: path to the output event file
+:param RA_pnt: right ascension of the pointing
+:param DEC_pnt: declination of the pointing
+:param texp: exposure time
+:param xmldir: directory containing response files. Default is $SIXTE/share/sixte/instruments/xrism
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="xrism_mock.XRISMmock.XRISM_source.runSIXTE_xtend_attitude">
+<span class="sig-name descname"><span class="pre">runSIXTE_xtend_attitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p2evt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">RA_pnt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DEC_pnt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mjdref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmldir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'$SIXTE/share/sixte/instruments/xrism'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xrism_mock/XRISMmock.html#XRISM_source.runSIXTE_xtend_attitude"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xrism_mock.XRISMmock.XRISM_source.runSIXTE_xtend_attitude" title="Permalink to this definition"></a></dt>
+<dd><p>run the simulation using xtend and an attitude file
+:param p2evt: path to the output event file
+:param RA_pnt: right ascension of the pointing
+:param DEC_pnt: declination of the pointing
+:param texp: exposure time
+:param mjdref: reference modified julian date, it should be the same as specified in the attitude file
+:param xmldir: directory containing response files. Default is $SIXTE/share/sixte/instruments/xrism
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-xrism_mock.helper">
+<span id="xrism-mock-helper-module"></span><h2>xrism_mock.helper module<a class="headerlink" href="#module-xrism_mock.helper" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="xrism_mock.helper.create_attitude">
+<span class="sig-prename descclassname"><span class="pre">xrism_mock.helper.</span></span><span class="sig-name descname"><span class="pre">create_attitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p2att</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roll</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tstart</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tstop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mjdref</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xrism_mock/helper.html#create_attitude"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xrism_mock.helper.create_attitude" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="xrism_mock.helper.get_MJD_from_date">
+<span class="sig-prename descclassname"><span class="pre">xrism_mock.helper.</span></span><span class="sig-name descname"><span class="pre">get_MJD_from_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gregorian_date</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xrism_mock/helper.html#get_MJD_from_date"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xrism_mock.helper.get_MJD_from_date" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="xrism_mock.helper.get_date_from_MJD">
+<span class="sig-prename descclassname"><span class="pre">xrism_mock.helper.</span></span><span class="sig-name descname"><span class="pre">get_date_from_MJD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mjd_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xrism_mock/helper.html#get_date_from_MJD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xrism_mock.helper.get_date_from_MJD" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-xrism_mock.spectral_fitting">
+<span id="xrism-mock-spectral-fitting-module"></span><h2>xrism_mock.spectral_fitting module<a class="headerlink" href="#module-xrism_mock.spectral_fitting" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="xrism_mock.spectral_fitting.fit_Tbabs_bapec">
+<span class="sig-prename descclassname"><span class="pre">xrism_mock.spectral_fitting.</span></span><span class="sig-name descname"><span class="pre">fit_Tbabs_bapec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p2spec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Emin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Emax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nH</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xrism_mock/spectral_fitting.html#fit_Tbabs_bapec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xrism_mock.spectral_fitting.fit_Tbabs_bapec" title="Permalink to this definition"></a></dt>
+<dd><p>fit spectra with a Tbabs(bapec) model
+:param p2spec: path to the spectrum
+:param p2out: path to output files
+:param Emin: lower energy
+:param Emax: higher energy
+:param nH: fixed galactic absorption
+:param kT: initial guess for temperature
+:param z: initial guess for redshift
+:param vel: initial guess for velocity
+:return:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="xrism_mock.spectral_fitting.fit_Tbabs_bapec_bapec">
+<span class="sig-prename descclassname"><span class="pre">xrism_mock.spectral_fitting.</span></span><span class="sig-name descname"><span class="pre">fit_Tbabs_bapec_bapec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p2spec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2out</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Emin</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Emax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nH</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/xrism_mock/spectral_fitting.html#fit_Tbabs_bapec_bapec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#xrism_mock.spectral_fitting.fit_Tbabs_bapec_bapec" title="Permalink to this definition"></a></dt>
+<dd><p>fit spectra with a Tbabs(bapec + bapec) model
+:param p2spec: path to the spectrum
+:param p2out: path to output files
+:param Emin: lower energy
+:param Emax: higher energy
+:param nH: fixed galactic absorption
+:param kT: initial guess for the two temperatures
+:param z: initial guess for redshift
+:param vel: initial guess for velocity
+:return:</p>
+</dd></dl>
+
+</section>
+<section id="module-xrism_mock">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-xrism_mock" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="xrism_mock" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Riccardo Seppi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>xrism_mock.XRISMmock &mdash; xrism_mock 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            xrism_mock
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">xrism_mock</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">xrism_mock</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">xrism_mock.XRISMmock</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for xrism_mock.XRISMmock</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+
+<div class="viewcode-block" id="XRISM_source"><a class="viewcode-back" href="../../xrism_mock.html#xrism_mock.XRISMmock.XRISM_source">[docs]</a><span class="k">class</span> <span class="nc">XRISM_source</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">RA_src</span><span class="p">,</span> <span class="n">DEC_src</span><span class="p">,</span>
+                <span class="n">XSPECFile</span><span class="p">,</span> <span class="n">IMGFile</span><span class="p">,</span> <span class="n">Flux</span><span class="p">,</span> <span class="n">p2simput</span><span class="p">,</span>
+                <span class="n">Emin_flux</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">Emax_flux</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">Emin_spec</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">Emax_spec</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+                 <span class="n">attitude</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This class manages the source you want to simulate</span>
+<span class="sd">        :param name: name of the source</span>
+<span class="sd">        :param RA_src: right ascension of the reference pixel in the image</span>
+<span class="sd">        :param DEC_src: declination of the reference pixel in the image</span>
+<span class="sd">        :param XSPECFile: path to the XSPEC file with spectral information</span>
+<span class="sd">        :param IMGFile: path to the image file</span>
+<span class="sd">        :param Flux: flux in observer frame [erg/s/cm2]</span>
+<span class="sd">        :param p2simput: path to the simput file</span>
+<span class="sd">        :param Emin_flux: lower flux threshold</span>
+<span class="sd">        :param Emax_flux: higher flux threshold</span>
+<span class="sd">        :param Emin_spec: lower energy for the spectrum</span>
+<span class="sd">        :param Emax_spec: higher energy for the spectrum</span>
+<span class="sd">        :param attitude: path to the attitude file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">RA_src</span> <span class="o">=</span> <span class="n">RA_src</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">DEC_src</span> <span class="o">=</span> <span class="n">DEC_src</span>
+        <span class="c1">#self.RA_pnt = RA_pnt</span>
+        <span class="c1">#self.DEC_pnt = DEC_pnt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">XSPECFile</span> <span class="o">=</span> <span class="n">XSPECFile</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">IMGFile</span> <span class="o">=</span> <span class="n">IMGFile</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Flux</span> <span class="o">=</span> <span class="n">Flux</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Emin_flux</span> <span class="o">=</span> <span class="n">Emin_flux</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Emax_flux</span> <span class="o">=</span> <span class="n">Emax_flux</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Emin_spec</span> <span class="o">=</span> <span class="n">Emin_spec</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Emax_spec</span> <span class="o">=</span> <span class="n">Emax_spec</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p2simput</span> <span class="o">=</span> <span class="n">p2simput</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">attitude</span> <span class="o">=</span> <span class="n">attitude</span>
+
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">XSPECFile</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">XSPECFile</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">XSPECFile</span><span class="p">,</span> <span class="s1">&#39;does not exist!&#39;</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">IMGFile</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">IMGFile</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">IMGFile</span><span class="p">,</span> <span class="s1">&#39;does not exist!&#39;</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">attitude</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attitude</span><span class="p">):</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Using&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">attitude</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Tried using&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">attitude</span><span class="p">,</span><span class="s1">&#39;, but it does not exist!&#39;</span><span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="XRISM_source.create_simput"><a class="viewcode-back" href="../../xrism_mock.html#xrism_mock.XRISMmock.XRISM_source.create_simput">[docs]</a>    <span class="k">def</span> <span class="nf">create_simput</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates the simput file</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p2simput</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Creating&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">p2simput</span><span class="p">)</span>
+            <span class="n">cmd_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$SIMPUT/bin/simputfile&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Simput=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">p2simput</span><span class="p">,</span>
+                <span class="s1">&#39;Src_Name=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="s1">&#39;RA=</span><span class="si">%.8f</span><span class="s1"> Dec=</span><span class="si">%.8f</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">RA_src</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">DEC_src</span><span class="p">),</span>
+                <span class="s1">&#39;Emin=</span><span class="si">%.3f</span><span class="s1"> Emax=</span><span class="si">%.3f</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Emin_flux</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Emax_flux</span><span class="p">),</span>
+                <span class="s1">&#39;srcFlux=</span><span class="si">%.5g</span><span class="s1">&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">Flux</span><span class="p">,</span>
+                <span class="s1">&#39;Nbins=19900&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;logEgrid=n&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;Elow=</span><span class="si">%.3f</span><span class="s1"> Eup=</span><span class="si">%.3f</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Emin_spec</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Emax_spec</span><span class="p">),</span>
+                <span class="s1">&#39;XSPECFile=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">XSPECFile</span><span class="p">,</span>
+                <span class="s1">&#39;ImageFile=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">IMGFile</span><span class="p">,</span>
+                <span class="s1">&#39;clobber=yes&#39;</span>
+                        <span class="p">]</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cmd_list</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">p2simput</span><span class="p">,</span> <span class="s1">&#39;already exists!&#39;</span><span class="p">)</span>
+            <span class="k">return</span></div>
+
+<div class="viewcode-block" id="XRISM_source.runSIXTE_resolve"><a class="viewcode-back" href="../../xrism_mock.html#xrism_mock.XRISMmock.XRISM_source.runSIXTE_resolve">[docs]</a>    <span class="k">def</span> <span class="nf">runSIXTE_resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p2evt</span><span class="p">,</span> <span class="n">RA_pnt</span><span class="p">,</span> <span class="n">DEC_pnt</span><span class="p">,</span> <span class="n">texp</span><span class="p">,</span> <span class="n">xmldir</span><span class="o">=</span><span class="s1">&#39;$SIXTE/share/sixte/instruments/xrism&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        run the simulation using resolve</span>
+<span class="sd">        :param p2evt: path to the output event file</span>
+<span class="sd">        :param RA_pnt: right ascension of the pointing</span>
+<span class="sd">        :param DEC_pnt: declination of the pointing</span>
+<span class="sd">        :param texp: exposure time</span>
+<span class="sd">        :param xmldir: directory containing response files. Default is $SIXTE/share/sixte/instruments/xrism</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">p2evt</span><span class="p">):</span>
+            <span class="n">cmd_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;xifupipeline&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;XMLFile=</span><span class="si">%s</span><span class="s1">/resolve/resolve_baseline_GVclosed.xml&#39;</span><span class="o">%</span><span class="n">xmldir</span><span class="p">,</span>
+                <span class="s1">&#39;AdvXml=</span><span class="si">%s</span><span class="s1">/resolve/resolve_detector.xml&#39;</span><span class="o">%</span><span class="n">xmldir</span><span class="p">,</span>
+                <span class="s1">&#39;Simput=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">p2simput</span><span class="p">,</span>
+                <span class="s1">&#39;EvtFile=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">p2evt</span><span class="p">,</span>
+                <span class="s1">&#39;RA=</span><span class="si">%.8f</span><span class="s1"> Dec=</span><span class="si">%.8f</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">RA_pnt</span><span class="p">,</span> <span class="n">DEC_pnt</span><span class="p">),</span>
+                <span class="s1">&#39;Exposure=</span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">texp</span>
+                        <span class="p">]</span>
+
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cmd_list</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+            <span class="c1"># radec2xy adds WCS coordinates to an event file</span>
+            <span class="n">cmd_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;radec2xy&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;EvtFile=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">p2evt</span><span class="p">,</span>
+                        <span class="s1">&#39;RefRA=</span><span class="si">%.8f</span><span class="s1"> RefDec=</span><span class="si">%.8f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">RA_pnt</span><span class="p">,</span> <span class="n">DEC_pnt</span><span class="p">),</span>
+                        <span class="s1">&#39;Projection = TAN&#39;</span>
+                        <span class="p">]</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cmd_list</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">p2evt</span><span class="p">,</span> <span class="s1">&#39;already exists!&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="XRISM_source.runSIXTE_resolve_attitude"><a class="viewcode-back" href="../../xrism_mock.html#xrism_mock.XRISMmock.XRISM_source.runSIXTE_resolve_attitude">[docs]</a>    <span class="k">def</span> <span class="nf">runSIXTE_resolve_attitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p2evt</span><span class="p">,</span> <span class="n">RA_pnt</span><span class="p">,</span> <span class="n">DEC_pnt</span><span class="p">,</span> <span class="n">texp</span><span class="p">,</span> <span class="n">mjdref</span><span class="p">,</span> <span class="n">xmldir</span><span class="o">=</span><span class="s1">&#39;$SIXTE/share/sixte/instruments/xrism&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        run the simulation using resolve and an attitude file</span>
+<span class="sd">        :param p2evt: path to the output event file</span>
+<span class="sd">        :param RA_pnt: right ascension of the pointing</span>
+<span class="sd">        :param DEC_pnt: declination of the pointing</span>
+<span class="sd">        :param texp: exposure time</span>
+<span class="sd">        :param mjdref: reference modified julian date, it should be the same as specified in the attitude file</span>
+<span class="sd">        :param xmldir: directory containing response files. Default is $SIXTE/share/sixte/instruments/xrism</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">p2evt</span><span class="p">):</span>
+            <span class="n">cmd_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;xifupipeline&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;XMLFile=</span><span class="si">%s</span><span class="s1">/resolve/resolve_baseline_GVclosed.xml&#39;</span><span class="o">%</span><span class="n">xmldir</span><span class="p">,</span>
+                <span class="s1">&#39;AdvXml=</span><span class="si">%s</span><span class="s1">/resolve/resolve_detector.xml&#39;</span><span class="o">%</span><span class="n">xmldir</span><span class="p">,</span>
+                <span class="s1">&#39;Simput=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">p2simput</span><span class="p">,</span>
+                <span class="s1">&#39;EvtFile=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">p2evt</span><span class="p">,</span>
+                <span class="s1">&#39;Attitude=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">attitude</span><span class="p">,</span>
+                <span class="s1">&#39;MJDREF=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="nb">repr</span><span class="p">(</span><span class="n">mjdref</span><span class="p">),</span>
+                <span class="s1">&#39;Exposure=</span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">texp</span>
+                <span class="p">]</span>
+
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cmd_list</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+            <span class="c1"># radec2xy adds WCS coordinates to an event file</span>
+            <span class="n">cmd_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;radec2xy&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;EvtFile=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">p2evt</span><span class="p">,</span>
+                        <span class="s1">&#39;RefRA=</span><span class="si">%.8f</span><span class="s1"> RefDec=</span><span class="si">%.8f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">RA_pnt</span><span class="p">,</span> <span class="n">DEC_pnt</span><span class="p">),</span>
+                        <span class="s1">&#39;Projection = TAN&#39;</span>
+                        <span class="p">]</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cmd_list</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">p2evt</span><span class="p">,</span> <span class="s1">&#39;already exists!&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="XRISM_source.runSIXTE_xtend"><a class="viewcode-back" href="../../xrism_mock.html#xrism_mock.XRISMmock.XRISM_source.runSIXTE_xtend">[docs]</a>    <span class="k">def</span> <span class="nf">runSIXTE_xtend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p2evt</span><span class="p">,</span> <span class="n">RA_pnt</span><span class="p">,</span> <span class="n">DEC_pnt</span><span class="p">,</span> <span class="n">texp</span><span class="p">,</span> <span class="n">xmldir</span><span class="o">=</span><span class="s1">&#39;$SIXTE/share/sixte/instruments/xrism&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        run the simulation using xtend</span>
+<span class="sd">        :param p2evt: path to the output event file</span>
+<span class="sd">        :param RA_pnt: right ascension of the pointing</span>
+<span class="sd">        :param DEC_pnt: declination of the pointing</span>
+<span class="sd">        :param texp: exposure time</span>
+<span class="sd">        :param xmldir: directory containing response files. Default is $SIXTE/share/sixte/instruments/xrism</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">p2evt</span><span class="p">):</span>
+
+            <span class="n">cmd_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;runsixt&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;XMLFile=</span><span class="si">%s</span><span class="s1">/xtend/xtend_ccd2.xml&#39;</span> <span class="o">%</span> <span class="n">xmldir</span><span class="p">,</span>
+                        <span class="s1">&#39;Simput=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">p2simput</span><span class="p">,</span>
+                        <span class="s1">&#39;EvtFile=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">p2evt</span><span class="p">,</span>
+                        <span class="s1">&#39;RA=</span><span class="si">%.8f</span><span class="s1"> Dec=</span><span class="si">%.8f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">RA_pnt</span><span class="p">,</span> <span class="n">DEC_pnt</span><span class="p">),</span>
+                        <span class="s1">&#39;Exposure=</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">texp</span>
+                        <span class="p">]</span>
+
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cmd_list</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+            <span class="c1"># radec2xy adds WCS coordinates to an event file</span>
+            <span class="n">cmd_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;radec2xy&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;EvtFile=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">p2evt</span><span class="p">,</span>
+                        <span class="s1">&#39;RefRA=</span><span class="si">%.8f</span><span class="s1"> RefDec=</span><span class="si">%.8f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">RA_pnt</span><span class="p">,</span> <span class="n">DEC_pnt</span><span class="p">),</span>
+                        <span class="s1">&#39;Projection = TAN&#39;</span>
+                        <span class="p">]</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cmd_list</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">p2evt</span><span class="p">,</span> <span class="s1">&#39;already exists!</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XRISM_source.runSIXTE_xtend_attitude"><a class="viewcode-back" href="../../xrism_mock.html#xrism_mock.XRISMmock.XRISM_source.runSIXTE_xtend_attitude">[docs]</a>    <span class="k">def</span> <span class="nf">runSIXTE_xtend_attitude</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p2evt</span><span class="p">,</span> <span class="n">RA_pnt</span><span class="p">,</span> <span class="n">DEC_pnt</span><span class="p">,</span> <span class="n">texp</span><span class="p">,</span> <span class="n">mjdref</span><span class="p">,</span> <span class="n">xmldir</span><span class="o">=</span><span class="s1">&#39;$SIXTE/share/sixte/instruments/xrism&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        run the simulation using xtend and an attitude file</span>
+<span class="sd">        :param p2evt: path to the output event file</span>
+<span class="sd">        :param RA_pnt: right ascension of the pointing</span>
+<span class="sd">        :param DEC_pnt: declination of the pointing</span>
+<span class="sd">        :param texp: exposure time</span>
+<span class="sd">        :param mjdref: reference modified julian date, it should be the same as specified in the attitude file</span>
+<span class="sd">        :param xmldir: directory containing response files. Default is $SIXTE/share/sixte/instruments/xrism</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">p2evt</span><span class="p">):</span>
+            <span class="n">cmd_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;runsixt&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;XMLFile=</span><span class="si">%s</span><span class="s1">/xtend/xtend_ccd2.xml&#39;</span> <span class="o">%</span> <span class="n">xmldir</span><span class="p">,</span>
+                        <span class="s1">&#39;Simput=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">p2simput</span><span class="p">,</span>
+                        <span class="s1">&#39;EvtFile=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">p2evt</span><span class="p">,</span>
+                        <span class="s1">&#39;Attitude=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="bp">self</span><span class="o">.</span><span class="n">attitude</span><span class="p">,</span>
+                        <span class="s1">&#39;MJDREF=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="nb">repr</span><span class="p">(</span><span class="n">mjdref</span><span class="p">),</span>
+                        <span class="s1">&#39;Exposure=</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">texp</span>
+                        <span class="p">]</span>
+
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cmd_list</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+
+            <span class="c1"># radec2xy adds WCS coordinates to an event file</span>
+            <span class="n">cmd_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;radec2xy&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;EvtFile=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">p2evt</span><span class="p">,</span>
+                        <span class="s1">&#39;RefRA=</span><span class="si">%.8f</span><span class="s1"> RefDec=</span><span class="si">%.8f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">RA_pnt</span><span class="p">,</span> <span class="n">DEC_pnt</span><span class="p">),</span>
+                        <span class="s1">&#39;Projection = TAN&#39;</span>
+                        <span class="p">]</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cmd_list</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">p2evt</span><span class="p">,</span> <span class="s1">&#39;already exists!</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="XRISM_source.createIMAGE_resolve"><a class="viewcode-back" href="../../xrism_mock.html#xrism_mock.XRISMmock.XRISM_source.createIMAGE_resolve">[docs]</a>    <span class="k">def</span> <span class="nf">createIMAGE_resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p2evt</span><span class="p">,</span> <span class="n">p2img</span><span class="p">,</span> <span class="n">RA_pnt</span><span class="p">,</span> <span class="n">DEC_pnt</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        create images from resolve</span>
+<span class="sd">        :param p2evt: path to event file</span>
+<span class="sd">        :param p2img: path to the output image</span>
+<span class="sd">        :param RA_pnt: right ascension of the center of the image</span>
+<span class="sd">        :param DEC_pnt: declination of the center of the image</span>
+<span class="sd">        :param size: rescale factor to modify the standard resolve image. Default is 1.</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">p2img</span><span class="p">):</span>
+            <span class="n">naxis</span> <span class="o">=</span> <span class="mi">6</span> <span class="o">*</span> <span class="n">size</span>
+            <span class="n">crpix</span> <span class="o">=</span> <span class="mf">3.5</span> <span class="o">*</span> <span class="n">size</span>
+            <span class="n">cmd_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$SIXTE/bin/imgev&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;EvtFile=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">p2evt</span><span class="p">,</span>
+                <span class="s1">&#39;Image=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">p2img</span><span class="p">,</span>
+                <span class="s1">&#39;CoordinateSystem=0 Projection=TAN&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;NAXIS1=</span><span class="si">%d</span><span class="s1"> NAXIS2=</span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">naxis</span><span class="p">,</span> <span class="n">naxis</span><span class="p">),</span>
+                <span class="s1">&#39;CUNIT1=deg CUNIT2=deg&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;CRVAL1=</span><span class="si">%.8f</span><span class="s1"> CRVAL2=</span><span class="si">%.8f</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">RA_pnt</span><span class="p">,</span> <span class="n">DEC_pnt</span><span class="p">),</span>
+                <span class="s1">&#39;CRPIX1=</span><span class="si">%s</span><span class="s1"> CRPIX2=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">crpix</span><span class="p">,</span> <span class="n">crpix</span><span class="p">),</span>
+                <span class="s1">&#39;CDELT1=-85.12516e-04 CDELT2=85.12516e-04&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;history=true clobber=yes&#39;</span>
+            <span class="p">]</span>
+
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cmd_list</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">p2img</span><span class="p">,</span> <span class="s1">&#39;already exists!&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="XRISM_source.createIMAGE_xtend"><a class="viewcode-back" href="../../xrism_mock.html#xrism_mock.XRISMmock.XRISM_source.createIMAGE_xtend">[docs]</a>    <span class="k">def</span> <span class="nf">createIMAGE_xtend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p2evt</span><span class="p">,</span> <span class="n">p2img</span><span class="p">,</span> <span class="n">RA_pnt</span><span class="p">,</span> <span class="n">DEC_pnt</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        create images from xtend</span>
+<span class="sd">        :param p2evt: path to event file</span>
+<span class="sd">        :param p2img: path to the output image</span>
+<span class="sd">        :param RA_pnt: right ascension of the center of the image</span>
+<span class="sd">        :param DEC_pnt: declination of the center of the image</span>
+<span class="sd">        :param size: rescale factor to modify the standard xtend image. Default is 1.</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">p2img</span><span class="p">):</span>
+            <span class="n">naxis</span> <span class="o">=</span> <span class="mi">640</span> <span class="o">*</span> <span class="n">size</span>
+            <span class="n">crpix</span> <span class="o">=</span> <span class="mf">473.34</span> <span class="o">*</span> <span class="n">size</span>
+            <span class="n">cmd_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$SIXTE/bin/imgev&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;EvtFile=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">p2evt</span><span class="p">,</span>
+                <span class="s1">&#39;Image=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">p2img</span><span class="p">,</span>
+                <span class="s1">&#39;CoordinateSystem=0 Projection=TAN&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;NAXIS1=</span><span class="si">%d</span><span class="s1"> NAXIS2=</span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">naxis</span><span class="p">,</span> <span class="n">naxis</span><span class="p">),</span>
+                <span class="s1">&#39;CUNIT1=deg CUNIT2=deg&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;CRVAL1=</span><span class="si">%.8f</span><span class="s1"> CRVAL2=</span><span class="si">%.8f</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">RA_pnt</span><span class="p">,</span> <span class="n">DEC_pnt</span><span class="p">),</span>
+                <span class="s1">&#39;CRPIX1=</span><span class="si">%s</span><span class="s1"> CRPIX2=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">crpix</span><span class="p">,</span> <span class="n">crpix</span><span class="p">),</span>
+                <span class="s1">&#39;CDELT1=-4.9110668e-04 CDELT2=4.9110668e-04&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;history=true clobber=yes&#39;</span>
+            <span class="p">]</span>
+
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cmd_list</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">p2img</span><span class="p">,</span> <span class="s1">&#39;already exists!&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="XRISM_source.extractSPECTRUM_resolve"><a class="viewcode-back" href="../../xrism_mock.html#xrism_mock.XRISMmock.XRISM_source.extractSPECTRUM_resolve">[docs]</a>    <span class="k">def</span> <span class="nf">extractSPECTRUM_resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p2evt</span><span class="p">,</span> <span class="n">p2spec</span><span class="p">,</span> <span class="n">xmldir</span><span class="o">=</span><span class="s1">&#39;$SIXTE/share/sixte/instruments/xrism&#39;</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        extract spectrum from resolve simulations</span>
+<span class="sd">        :param p2evt: path to the event file</span>
+<span class="sd">        :param p2spec: path to the output spectrum</span>
+<span class="sd">        :param xmldir: directory containing response files. Default is $SIXTE/share/sixte/instruments/xrism</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">p2spec</span><span class="p">):</span>
+            <span class="n">cmd_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;$SIXTE/bin/makespec&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;EvtFile=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">p2evt</span><span class="p">,</span>
+              <span class="s1">&#39;Spectrum=</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">p2spec</span><span class="p">,</span>
+              <span class="s1">&#39;RSPPath=</span><span class="si">%s</span><span class="s1">/resolve&#39;</span><span class="o">%</span><span class="n">xmldir</span><span class="p">,</span>
+              <span class="s1">&#39;clobber=yes&#39;</span><span class="p">,</span>
+                        <span class="p">]</span>
+
+            <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cmd_list</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">p2spec</span><span class="p">,</span> <span class="s1">&#39;already exists!&#39;</span><span class="p">)</span></div></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Riccardo Seppi.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

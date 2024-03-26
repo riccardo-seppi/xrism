@@ -1,6 +1,18 @@
 import os
 
 def fit_Tbabs_bapec(p2spec, p2out, Emin, Emax, nH, kT, z, vel):
+    """
+    fit spectra with a Tbabs(bapec) model
+    :param p2spec: path to the spectrum
+    :param p2out: path to output files
+    :param Emin: lower energy
+    :param Emax: higher energy
+    :param nH: fixed galactic absorption
+    :param kT: initial guess for temperature
+    :param z: initial guess for redshift
+    :param vel: initial guess for velocity
+    :return:
+    """
     p2plot = os.path.join('/'.join(p2out.split('/')[:-1]), p2out.split('/')[-1].split('.')[0]+'.ps')
     p2model = os.path.join('/'.join(p2out.split('/')[:-1]), p2out.split('/')[-1].split('.')[0]+'.xcm')
     if not os.path.isfile(p2out):
@@ -47,6 +59,18 @@ def fit_Tbabs_bapec(p2spec, p2out, Emin, Emax, nH, kT, z, vel):
 
 
 def fit_Tbabs_bapec_bapec(p2spec, p2out, Emin, Emax, nH, kT, z, vel):
+    """
+    fit spectra with a Tbabs(bapec + bapec) model
+    :param p2spec: path to the spectrum
+    :param p2out: path to output files
+    :param Emin: lower energy
+    :param Emax: higher energy
+    :param nH: fixed galactic absorption
+    :param kT: initial guess for the two temperatures
+    :param z: initial guess for redshift
+    :param vel: initial guess for velocity
+    :return:
+    """
     p2plot = os.path.join('/'.join(p2out.split('/')[:-1]), p2out.split('/')[-1].split('.')[0]+'.ps')
     p2model = os.path.join('/'.join(p2out.split('/')[:-1]), p2out.split('/')[-1].split('.')[0]+'.xcm')
     if not os.path.isfile(p2out):
