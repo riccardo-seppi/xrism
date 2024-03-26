@@ -125,6 +125,40 @@ class XRISM_source():
         else:
             print(p2evt, 'already exists!')
 
+
+    def runSIXTE_xtend_attitude(self, p2evt, RA_pnt, DEC_pnt, texp, mjdref, xmldir='$SIXTE/share/sixte/instruments/xrism'):
+        if not os.path.isfile(p2evt):
+            cmd_list = ['runsixt',
+                        'XMLFile=%s/xtend/xtend_ccd2.xml' % xmldir,
+                        'Simput=%s' % self.p2simput,
+                        'EvtFile=%s' % p2evt,
+                        "Attitude=%s"%self.attitude,
+                        'MJDREF=%s'%repr(mjdref),
+                        'Exposure=%d' % texp
+                        ]
+
+            cmd = ' '.join(cmd_list)
+            print(cmd)
+            os.system(cmd)
+
+            cmd = ' '.join(cmd_list)
+            print(cmd)
+            os.system(cmd)
+
+            # radec2xy adds WCS coordinates to an event file
+            cmd_list = ['radec2xy',
+                        'EvtFile=%s' % p2evt,
+                        'RefRA=%.8f RefDec=%.8f' % (RA_pnt, DEC_pnt),
+                        'Projection = TAN'
+                        ]
+            cmd = ' '.join(cmd_list)
+            print(cmd)
+            os.system(cmd)
+
+
+        else:
+            print(p2evt, 'already exists!\n')
+
     def runSIXTE_xtend(self, p2evt, RA_pnt, DEC_pnt, texp, xmldir='$SIXTE/share/sixte/instruments/xrism'):
 
         if not os.path.isfile(p2evt):
@@ -151,7 +185,7 @@ class XRISM_source():
             print(cmd)
             os.system(cmd)
         else:
-            print(p2evt, 'already exists!')
+            print(p2evt, 'already exists!\n')
 
 
     def createIMAGE_resolve(self, p2evt, p2img, RA_pnt, DEC_pnt):

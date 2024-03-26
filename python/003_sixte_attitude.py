@@ -35,3 +35,6 @@ DEC_pnt = -1.341345
 texp = 2e5 #200ks
 p2evt_resolve = os.path.join(basedir, 'sixte_files/1comp/A1689_evts_resolve_attitude.fits')
 A1689.runSIXTE_resolve_attitude(p2evt_resolve, RA_pnt, DEC_pnt, texp, mjdref=mjdref)
+
+p2evt_xtend = os.path.join(basedir, 'sixte_files/1comp/A1689_evts_xtend_attitude.fits')
+A1689.runSIXTE_xtend_attitude(p2evt_xtend, RA_pnt, DEC_pnt, texp, mjdref=mjdref)
